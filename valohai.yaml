@@ -176,7 +176,7 @@
         step: Compare predictions (MNIST)
       - name: deploy
         type: deployment
-        deployment: mydeployment
+        deployment: deployment-test
         endpoints:
           - predict-digit
     edges:
