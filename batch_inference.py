@@ -38,7 +38,7 @@ def main():
     ap.add_argument('--model-dir', required=True)
     ap.add_argument('--image-dir', required=True)
     ap.add_argument('--output-dir', default=os.environ.get('VH_OUTPUTS_DIR', '.'))
-    ap.add_argument('--output-best-model', default=False)
+    ap.add_argument('--output-best-model', default=True)
     args = ap.parse_args()
 
     # validate the arguments
