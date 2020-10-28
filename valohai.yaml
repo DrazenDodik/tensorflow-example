@@ -82,10 +82,6 @@
         description: Directory for predictions
         type: string
         default: /valohai/inputs/predictions/
-      - name: model-dir
-        pass-as: --model-dir={v}
-        description: Directory for models
-        type: string
 
 - step:
     name: Worker environment check

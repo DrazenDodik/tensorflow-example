@@ -8,16 +8,12 @@ import shutil
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--prediction-dir', required=True)
-    ap.add_argument('--model-dir', required=False)
     args = ap.parse_args()
+    vh_inputs_dir = os.getenv('VH_INPUTS_DIR', './')
     vh_outputs_dir = os.getenv('VH_OUTPUTS_DIR', './')
 
     if not os.path.isdir(args.prediction_dir):
         raise Exception('--prediction-dir must be a directory')
-    
-    if(args.model_dir is not None) :
-        if not os.path.isdir(args.model_dir):
-            raise Exception('--model-dir must be a directory')
 
     json_files = glob.glob('{}/*.json'.format(args.prediction_dir))
     if not json_files:
@@ -46,7 +42,7 @@ def main():
 
         suffix = prediction_filename.split('predictions-')[1].split('.json')[0]
         model_filename = ("model-{}.pb").format(suffix)
-        model_filepath = os.path.join(args.model_dir, model_filename)
+        model_filepath = os.path.join(vh_inputs_dir, 'models', model_filename)
 
         if not best_of_best[1]:
             best_of_best = (prediction_filename, average_best_guess, model_filename)
