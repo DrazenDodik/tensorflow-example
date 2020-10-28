@@ -79,7 +79,7 @@ def main():
         json.dump(json_blob, json_out, sort_keys=True)
 
     if(args.output_best_model) :
-        shutil.copt(model_filename, os.path.join(args.output_dir, 'model-{}.pb'.format(suffix)))
+        shutil.copy(model_filename, os.path.join(args.output_dir, 'model-{}.pb'.format(suffix)))
 
 
 if __name__ == '__main__':

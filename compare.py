@@ -2,6 +2,7 @@ import argparse
 import glob
 import json
 import os
+import shutil
 
 
 def main():
@@ -42,11 +43,12 @@ def main():
         print("Model: {model_filename}")
 
         if not best_of_best[1]:
-            best_of_best = (prediction_filename, average_best_guess)
+            best_of_best = (prediction_filename, average_best_guess, model_filename)
         elif average_best_guess > best_of_best[1]:
-            best_of_best = (prediction_filename, average_best_guess)
+            best_of_best = (prediction_filename, average_best_guess, model_filename)
 
     print('The best model is the one that generated {} ({})'.format(best_of_best[0], best_of_best[1]))
+    shutil.copy(os.path.join(args.prediction_dir, model_filename), os.path.join(os.getenv('VH_OUTPUTS_DIR', model_filename)))
 
 
 if __name__ == '__main__':
