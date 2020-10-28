@@ -8,15 +8,16 @@ import shutil
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--prediction-dir', required=True)
-    ap.add_argument('--model-dir', required=True)
+    ap.add_argument('--model-dir', required=False)
     args = ap.parse_args()
     vh_outputs_dir = os.getenv('VH_OUTPUTS_DIR', './')
 
     if not os.path.isdir(args.prediction_dir):
         raise Exception('--prediction-dir must be a directory')
     
-    if not os.path.isdir(args.model_dir):
-        raise Exception('--model-dir must be a directory')
+    if(args.model_dir not None) :
+        if not os.path.isdir(args.model_dir):
+            raise Exception('--model-dir must be a directory')
 
     json_files = glob.glob('{}/*.json'.format(args.prediction_dir))
     if not json_files:
