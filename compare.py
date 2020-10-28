@@ -8,10 +8,14 @@ import shutil
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--prediction-dir', required=True)
+    ap.add_argument('--model-dir', required=True)
     args = ap.parse_args()
 
     if not os.path.isdir(args.prediction_dir):
         raise Exception('--prediction-dir must be a directory')
+    
+    if not os.path.isdir(args.model_dir):
+        raise Exception('--model-dir must be a directory')
 
     json_files = glob.glob('{}/*.json'.format(args.prediction_dir))
     if not json_files:
@@ -48,7 +52,7 @@ def main():
             best_of_best = (prediction_filename, average_best_guess, model_filename)
 
     print('The best model is the one that generated {} ({})'.format(best_of_best[0], best_of_best[1]))
-    shutil.copy(os.path.join(args.prediction_dir, model_filename), os.path.join(os.getenv('VH_OUTPUTS_DIR', model_filename)))
+    shutil.copy(os.path.join(args.model_dir, model_filename), os.path.join(os.getenv('VH_OUTPUTS_DIR', model_filename)))
 
 
 if __name__ == '__main__':
