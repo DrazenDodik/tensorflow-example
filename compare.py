@@ -15,7 +15,7 @@ def main():
     if not os.path.isdir(args.prediction_dir):
         raise Exception('--prediction-dir must be a directory')
     
-    if(args.model_dir not None) :
+    if(args.model_dir is not None) :
         if not os.path.isdir(args.model_dir):
             raise Exception('--model-dir must be a directory')
 
