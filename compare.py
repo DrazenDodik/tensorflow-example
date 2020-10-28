@@ -39,7 +39,7 @@ def main():
         print('{} => {} (average best guess probability)'.format(prediction_filename, average_best_guess))
 
         suffix = prediction_filename.split('predictions-')[1].split('.json')[0]
-        model_filename = f"model-{suffix}.pb"
+        model_filename = ("model-{}.pb").format(suffix)
         print("Model: {model_filename}")
 
         if not best_of_best[1]:
