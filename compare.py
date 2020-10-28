@@ -10,6 +10,7 @@ def main():
     ap.add_argument('--prediction-dir', required=True)
     ap.add_argument('--model-dir', required=True)
     args = ap.parse_args()
+    vh_outputs_dir = os.getenv('VH_OUTPUTS_DIR', './')
 
     if not os.path.isdir(args.prediction_dir):
         raise Exception('--prediction-dir must be a directory')
@@ -44,6 +45,7 @@ def main():
 
         suffix = prediction_filename.split('predictions-')[1].split('.json')[0]
         model_filename = ("model-{}.pb").format(suffix)
+        model_filepath = os.path.join(args.model_dir, model_filename)
 
         if not best_of_best[1]:
             best_of_best = (prediction_filename, average_best_guess, model_filename)
@@ -51,7 +53,9 @@ def main():
             best_of_best = (prediction_filename, average_best_guess, model_filename)
 
     print('The best model is the one that generated {} ({})'.format(best_of_best[0], best_of_best[1]))
-    shutil.copy(os.path.join(args.model_dir, model_filename), os.path.join(os.getenv('VH_OUTPUTS_DIR', 'model.pb')))
+    
+    if(os.path.exists(model_filepath)) :
+        shutil.copy(model_filepath, os.path.join(vh_outputs_dir, 'model.pb'))
 
 
 if __name__ == '__main__':
