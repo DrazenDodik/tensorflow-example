@@ -86,7 +86,6 @@
         pass-as: --model-dir={v}
         description: Directory for models
         type: string
-        default: /valohai/inputs/models/
 
 - step:
     name: Worker environment check
