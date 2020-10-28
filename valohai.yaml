@@ -177,6 +177,7 @@
       - name: deploy
         type: deployment
         deployment: deployment-test
+        commit: latest
         endpoints:
           - predict-digit
     edges:
