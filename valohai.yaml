@@ -69,6 +69,13 @@
     command: python compare.py --prediction-dir=/valohai/inputs/predictions/
     inputs:
       - name: predictions
+      - name: models
+    parameters:
+      - name: output_best_model
+        pass-as: --output_best_model={v}
+        description: Save model to output folder
+        type: flag
+        default: True
 
 - step:
     name: Worker environment check
@@ -169,7 +176,9 @@
       - [evaluate1.output.*.json, find-best-model.input.predictions]
       - [evaluate2.output.*.json, find-best-model.input.predictions]
       - [evaluate3.output.*.json, find-best-model.input.predictions]
-
+      - [evaluate1.output.model*, find-best-model.input.models]
+      - [evaluate2.output.model*, find-best-model.input.models]
+      - [evaluate3.output.model*, find-best-model.input.models]
 - endpoint:
     name: greet
     image: python:3.6

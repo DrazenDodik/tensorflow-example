@@ -25,7 +25,7 @@ def main():
 
     # here we have some simple example logic to compare predictions to figure out which
     # predictions are the best, so this varies from use-case to use-case
-    best_of_best = (None, None)
+    best_of_best = (None, None, None)
     average_best_guesses = dict()
     for prediction_filename, blob in prediction_blobs.items():
         best_guess_probabilities = []
@@ -36,6 +36,10 @@ def main():
         average_best_guess = sum(best_guess_probabilities) / len(best_guess_probabilities)
         average_best_guesses[prediction_filename] = average_best_guess
         print('{} => {} (average best guess probability)'.format(prediction_filename, average_best_guess))
+
+        suffix = prediction_filename.split('predictions-')[1].split('.json')[0]
+        model_filename = f"model-{suffix}.pb"
+        print("Model: {model_filename}")
 
         if not best_of_best[1]:
             best_of_best = (prediction_filename, average_best_guess)
