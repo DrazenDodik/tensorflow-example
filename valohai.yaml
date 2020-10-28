@@ -70,6 +70,7 @@
     inputs:
       - name: predictions
       - name: models
+        optional: True
     parameters:
       - name: output_best_model
         pass-as: --output_best_model={v}
