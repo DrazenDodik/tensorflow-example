@@ -75,7 +75,7 @@
         pass-as: --output_best_model={v}
         description: Save model to output folder
         type: flag
-        default: True
+        default: False
 
 - step:
     name: Worker environment check
