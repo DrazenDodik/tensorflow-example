@@ -62,6 +62,12 @@
           - https://valohaidemo.blob.core.windows.net/mnist/four-inverted.png
           - https://valohaidemo.blob.core.windows.net/mnist/five-inverted.png
           - https://valohaidemo.blob.core.windows.net/mnist/five-normal.jpg
+    parameters:
+      - name: output_best_model
+        pass-as: --output_best_model={v}
+        description: Save model to output folder
+        type: flag
+        default: False
 
 - step:
     name: Compare predictions (MNIST)
@@ -72,11 +78,6 @@
       - name: models
         optional: True
     parameters:
-      - name: output_best_model
-        pass-as: --output_best_model={v}
-        description: Save model to output folder
-        type: flag
-        default: False
       - name: prediction-dir
         pass-as: --prediction-dir={v}
         description: Directory for predictions
