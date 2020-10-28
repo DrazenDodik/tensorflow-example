@@ -66,7 +66,7 @@
 - step:
     name: Compare predictions (MNIST)
     image: tensorflow/tensorflow:1.13.1-py3
-    command: python compare.py --prediction-dir=/valohai/inputs/predictions/ --model-dir=/valohai/inputs/models/
+    command: python compare.py {parameters}
     inputs:
       - name: predictions
       - name: models
@@ -76,6 +76,16 @@
         description: Save model to output folder
         type: flag
         default: False
+      - name: prediction-dir
+        pass-as: --prediction-dir={v}
+        description: Directory for predictions
+        type: string
+        default: /valohai/inputs/predictions/
+      - name: model-dir
+        pass-as: --model-dir={v}
+        description: Directory for models
+        type: string
+        default: /valohai/inputs/models/
 
 - step:
     name: Worker environment check
