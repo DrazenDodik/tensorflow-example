@@ -201,7 +201,7 @@
       - [evaluate1.output.model*, find-best-model.input.models]
       - [evaluate2.output.model*, find-best-model.input.models]
       - [evaluate3.output.model*, find-best-model.input.models]
-      - [find-best-model.output.model.pb, deploy.input.predict-digit.model]
+      - [find-best-model.output.model.pb, deploy.file.predict-digit.model]
 - endpoint:
     name: greet
     image: python:3.6
